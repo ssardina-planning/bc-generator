@@ -109,51 +109,62 @@ def main():
 
         random.seed(seed)
         print >> sys.stdout, "Setting seed to", seed
-        # class C
+
+        ##################################
+        # Class C
+        ##################################
         for m in action_intervals:
             for k, d_min, d_max in target_params:
                 for n in beh_proportions:
                     b = m * n
                     for d in range(d_min, d_max + 1):
-                        print >> sys.stdout, "Generating problem with parameters:"
+                        print >> sys.stdout, "Generating problem of type C with parameters:"
                         print >> sys.stdout, "m=%(m)d, k=%(k)d, d=%(d)d, b=%(b)d" % locals()
                         generate_class_C(b, 1, m, k, d, seed)
         print >> sys.stdout, "Collecting garbage"
         n = gc.collect()
         print >> sys.stdout, n, "Unreachable objects"
-        # class D
+
+
+        ##################################
+        # Class D
+        ##################################
         for m in action_intervals:
             for k, d_min, d_max in target_params:
                 for n in beh_proportions:
                     for p in failure_probs:
                         b = int(m * (1.0 + p)) * n
                         for d in range(d_min, d_max + 1):
-                            print >> sys.stdout, "Generating problem with parameters:"
+                            print >> sys.stdout, "Generating problem of type D with parameters:"
                             print >> sys.stdout, "m=%(m)d, p=%(p)f, k=%(k)d, d=%(d)d, b=%(b)d" % locals()
                             # generate_class_D( b, 1, p, m, k, d, seed )
         print >> sys.stdout, "Collecting garbage"
         n = gc.collect()
         print >> sys.stdout, n, "Unreachable objects"
 
-        # class A
+        ##################################
+        # Class A
+        ##################################
         for m in action_intervals:
             for k in num_plans:
                 for n in beh_proportions:
                     b = m * n
-                    print >> sys.stdout, "Generating problem with parameters:"
+                    print >> sys.stdout, "Generating problem of type A with parameters:"
                     print >> sys.stdout, "m=%(m)d, k=%(k)d, b=%(b)d" % locals()
                     generate_class_A(b, 1, m, k, seed)
         print >> sys.stdout, "Collecting garbage"
         n = gc.collect()
         print >> sys.stdout, n, "Unreachable objects"
 
-        # class B
+        ##################################
+        # Class B
+        ##################################
         for m in action_intervals:
             for k in num_plans:
                 for n in beh_proportions:
                     for p in failure_probs:
                         b = int(m * (1.0 + p)) * n
-                        print >> sys.stdout, "Generating problem with parameters:"
+                        print >> sys.stdout, "Generating problem of type B with parameters:"
                         print >> sys.stdout, "m=%(m)d, p=%(p)f, k=%(k)d, b=%(b)d" % locals()
                         # generate_class_B( b, 1, p, m, k, seed )
         print >> sys.stdout, "Collecting garbage"
