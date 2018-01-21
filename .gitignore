@@ -386,3 +386,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+__init__.py
