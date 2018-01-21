@@ -387,3 +387,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 __init__.py
+class-A-4711 class-C-1921 class-C-381291 class-C-4711
+class*
