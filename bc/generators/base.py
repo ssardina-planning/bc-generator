@@ -1,6 +1,8 @@
 import networkx as nx
 import os
 from bc.problem import Problem
+from networkx.drawing.nx_agraph import read_dot, write_dot, graphviz_layout
+
 
 class Generator :
 	
@@ -22,19 +24,19 @@ class Generator :
 	def generate_behaviors( self ) :
 		self.generate_beh_graphs( )
 		for i in range( len( self.beh_graphs ) ) :
-			nx.draw_graphviz( self.beh_graphs[i] )
+			nx.draw( self.beh_graphs[i] , pos=graphviz_layout( self.beh_graphs[i] ))
 			beh_out_file = os.path.join( self.output_folder, 'beh-%d.dot'%i )
 			beh_out_pdf_file = os.path.join( self.output_folder, 'beh-%d.pdf'%i )
-			nx.write_dot( self.beh_graphs[i], beh_out_file )
+			write_dot( self.beh_graphs[i], beh_out_file )
 			#os.system( 'dot -Tpdf -o%s %s'%(beh_out_pdf_file, beh_out_file) ) 
 			self.problem.beh_graphs.append( self.beh_graphs[i].copy() )
 
 	def generate_target( self ) :
 		self.generate_target_graph( )
-		nx.draw_graphviz(self.tgt_graph)
+		nx.draw(self.tgt_graph, pos=graphviz_layout(self.tgt_graph))
 		target_out_file = os.path.join( self.output_folder, "target.dot" )
 		target_out_pdf_file = os.path.join( self.output_folder, "target.pdf" )
-		nx.write_dot(self.tgt_graph, target_out_file)
+		write_dot(self.tgt_graph, target_out_file)
 		#os.system( 'dot -Tpdf -o%s %s'%(target_out_pdf_file, target_out_file) )
 		self.problem.tgt_graph = self.tgt_graph.copy()
 

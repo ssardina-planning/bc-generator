@@ -21,7 +21,12 @@ https://networkx.github.io/documentation/stable/release/migration_guide_from_1.x
 
 With the release of NetworkX 2.0 we are moving to a view/iterator reporting API. We have moved many methods from 
 reporting lists or dicts to iterating over the information. 
+
+1. replace nx.draw($1, pos=graphviz_layout($1)) with nx.draw($1, pos=graphviz_layout($1))
+2. changed all x.nodes_iter() and x.edges_iter() to x.nodes and x.edges
+3. replaced x.nodes()[0] with list(x.nodes)[0]
 '''
+
 
 def main():
     # check if config file name passed as argument

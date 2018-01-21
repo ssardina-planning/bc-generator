@@ -132,15 +132,15 @@ class Problem :
 		index = 0
 		for beh in self.beh_graphs :
 			b = Behavior( index )
-			for n in beh.nodes_iter() :
+			for n in beh.nodes:
 				b.add_state(n)
 			index += 1
 			b.b0 = b.B[0]
 			self.behaviors.append(b)
 		self.target = Target()
-		for t in self.tgt_graph.nodes_iter() :
+		for t in self.tgt_graph.nodes:
 			self.target.add_state( t )
-		self.target.t0 = self.target.T[self.tgt_graph.nodes()[0]]
+		self.target.t0 = self.target.T[list(self.tgt_graph.nodes)[0]]
 				 
 
 	def make_bc_actions( self ) :
@@ -151,10 +151,10 @@ class Problem :
 		for i in range(0, len(self.behaviors) ):
 			beh = self.behaviors[i]
 			graph = self.beh_graphs[i]
-			for qi, qj, data in graph.edges_iter( data=True ) :
+			for qi, qj, data in graph.edges( data=True ) :
 				beh.trans.append( ( beh.B[qi], self.actions[data['label']], beh.B[qj] ) ) 
 
-		for qi, qj, data in self.tgt_graph.edges_iter(data=True) :
+		for qi, qj, data in self.tgt_graph.edges(data=True) :
 			self.target.trans.append( ( self.target.T[qi], self.actions[data['label']], self.target.T[qj] ) )
 
 	def make_fluents( self ) :

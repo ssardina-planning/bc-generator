@@ -28,8 +28,8 @@ def main():
 
     for seed in seeds:
         os.system('python gen-ndp-task.py %s' % seed)
-        os.system('python gen-ndp-tasks-IT.py %s' % seed)
-        os.system('python gen-ndp-tasks-AU.py %s' % seed)
+        # os.system('python gen-ndp-tasks-IT.py %s' % seed)
+        # os.system('python gen-ndp-tasks-AU.py %s' % seed)
 
 
 if __name__ == '__main__':
